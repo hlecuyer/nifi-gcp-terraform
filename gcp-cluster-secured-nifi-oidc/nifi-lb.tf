@@ -3,7 +3,7 @@ resource "google_compute_instance_group" "nifi-ig" {
     description = "Instance group for NiFi instances"
     network     = "${google_compute_network.default.self_link}"
     instances   = "${google_compute_instance.nifi.*.self_link}"
-    
+
     named_port {
         name    = "https"
         port    = "8443"
@@ -52,4 +52,5 @@ resource "google_compute_global_forwarding_rule" "nifi-lb" {
   load_balancing_scheme = "EXTERNAL"
   ip_protocol           = "TCP"
   port_range            = "443"
+  ip_address            = "35.186.211.116"
 }

@@ -10,10 +10,10 @@ resource "google_compute_instance" "nifi" {
     service_account {
         scopes = ["storage-ro"]
     }
-    
+
     boot_disk {
         initialize_params {
-            image = "debian-cloud/debian-9"
+            image = "debian-cloud/debian-10"
         }
     }
 
@@ -25,7 +25,7 @@ resource "google_compute_instance" "nifi" {
 
     metadata_startup_script =   <<EOF
 
-        apt-get update && apt-get install openjdk-8-jdk unzip jq -y
+        apt-get update && apt-get install default-jdk unzip jq -y
 
         NIFI_UID=10000
         NIFI_GID=10000

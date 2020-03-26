@@ -11,7 +11,7 @@ resource "google_compute_firewall" "allow-ssh" {
 }
 
 resource "google_compute_firewall" "allow-internal" {
-    
+
     name    = "allow-internal"
     network = "${google_compute_subnetwork.default.name}"
 
@@ -36,7 +36,7 @@ resource "google_compute_firewall" "allow-internal" {
 }
 
 resource "google_compute_firewall" "allow-https" {
-    
+
     name    = "allow-https"
     network = "${google_compute_subnetwork.default.name}"
 

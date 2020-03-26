@@ -7,10 +7,10 @@ resource "google_compute_instance" "nifi-ca" {
     service_account {
         scopes = ["storage-rw"]
     }
-    
+
     boot_disk {
         initialize_params {
-            image = "debian-cloud/debian-9"
+            image = "debian-cloud/debian-10"
         }
     }
 
@@ -22,7 +22,7 @@ resource "google_compute_instance" "nifi-ca" {
 
     metadata_startup_script =   <<EOF
 
-        apt-get update && apt-get install openjdk-8-jdk unzip jq -y
+        apt-get update && apt-get install default-jdk unzip jq -y
 
         NIFI_UID=10000
         NIFI_GID=10000
@@ -51,7 +51,7 @@ resource "google_compute_instance" "nifi-ca" {
 
         gsutil cp key.pem ${var.nifi_bucket}/key.pem
         gsutil cp certs.pem ${var.nifi_bucket}/certs.pem
-        
+
         rm nifi-cert.pem truststore.jks keystore.jks keystore.p12 key.pem certs.pem config.json
 
     EOF
